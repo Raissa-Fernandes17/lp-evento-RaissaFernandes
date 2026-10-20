@@ -1,83 +1,56 @@
-import { useState } from 'react'
+import { useState } from "react";
 
-function Faq() {
-  const perguntas = [
-    {
-      id: 1,
-      q: "Preciso de atestado médico?",
-      a: "Não é obrigatório, mas é altamente recomendado para a sua segurança."
-    },
-    {
-      id: 2,
-      q: "Tem guarda-volumes?",
-      a: "Sim! Teremos uma tenda oficial da organização localizada logo ao lado da linha de largada."
-    },
-    {
-      id: 3,
-      q: "Posso correr com fone de ouvido?",
-      a: "Pode sim, mas com o volume baixo para conseguir ouvir os avisos de segurança dos fiscais."
-    }
-  ]
-
-  const [aberto, setAberto] = useState(null)
-
-  function alternarFaq(id) {
-    setAberto(aberto === id ? null : id)
-  }
+// Componente auxiliar para cada item sanfonado (accordion)
+function ItemFaq({ pergunta, resposta }) {
+  const [aberto, setAberto] = useState(false);
 
   return (
-    <section id="faq" className="max-w-2xl mx-auto pt-4 pb-12 px-4">
-      {/* Título com fonte pesada e uma mini barra decorativa laranja abaixo */}
-      <div className="text-center mb-8">
-        <h2 className="text-2xl sm:text-3xl font-black text-primaria uppercase tracking-tight">
-          Dúvidas Frequentes
-        </h2>
-        <div className="w-12 h-1 bg-destaque mx-auto mt-2 rounded-full"></div>
-      </div>
-
-      <div className="space-y-3">
-        {perguntas.map((faq) => {
-          const estaAberto = aberto === faq.id
-          
-          return (
-            <div 
-              key={faq.id} 
-              className={`rounded-2xl overflow-hidden transition-all duration-300 border ${
-                estaAberto 
-                  ? 'border-destaque bg-slate-50 shadow-md shadow-orange-500/5' 
-                  : 'border-slate-100 bg-slate-50/50 hover:bg-slate-50'
-              }`}
-            >
-              <button
-                type="button"
-                onClick={() => alternarFaq(faq.id)}
-                className="w-full text-left p-5 font-black text-slate-800 flex justify-between items-center cursor-pointer text-sm sm:text-base focus:outline-none"
-              >
-                <span className={`pr-4 transition-colors ${estaAberto ? 'text-destaque' : 'text-slate-800'}`}>
-                  {faq.q}
-                </span>
-                {/* Ícone estilizado em um círculo cinza que gira quando abre */}
-                <div className={`w-7 h-7 rounded-full flex items-center justify-center font-bold text-lg transition-all duration-300 ${
-                  estaAberto ? 'bg-destaque text-white rotate-180' : 'bg-slate-200/60 text-slate-600'
-                }`}>
-                  {estaAberto ? '−' : '+'}
-                </div>
-              </button>
-              
-              {/* Resposta com animação sutil e fundo branco destacado */}
-              {estaAberto && (
-                <div className="px-5 pb-5 pt-2 bg-white text-slate-600 text-xs sm:text-sm leading-relaxed font-medium">
-                  <p className="border-t border-slate-100 pt-3">
-                    {faq.a}
-                  </p>
-                </div>
-              )}
-            </div>
-          )
-        })}
-      </div>
-    </section>
-  )
+    <div className="border border-slate-700 rounded-lg overflow-hidden bg-slate-800 transition-all">
+      <button
+        onClick={() => setAberto(!aberto)}
+        className="w-full text-left p-4 font-semibold text-white flex justify-between items-center hover:bg-slate-700 transition"
+      >
+        <span>{pergunta}</span>
+        <span className="text-amber-500 text-xl font-bold">{aberto ? "−" : "+"}</span>
+      </button>
+      
+      {aberto && (
+        <div className="p-4 bg-slate-900 border-t border-slate-700 text-slate-300 text-sm leading-relaxed">
+          {resposta}
+        </div>
+      )}
+    </div>
+  );
 }
 
-export default Faq
+function Faq() {
+  const perguntasDoBriefing = [
+    {
+      pergunta: "Onde e quando será a retirada dos kits?",
+      resposta: "A entrega dos kits acontecerá no dia do evento (17 de abril de 2027) na Praça Central das 16h às 19h. Lembre-se de levar o documento de identidade e o comprovante de inscrição."
+    },
+    {
+      pergunta: "O que vem incluído no kit de corrida?",
+      resposta: "O kit oficial da Corrida Noturna OC contém uma camiseta oficial com detalhes refletivos de alta visibilidade, número de peito personalizado, chip de cronometragem eletrônica e medalha pós-prova."
+    },
+    {
+      pergunta: "Haverá pontos de hidratação no trajeto?",
+      resposta: "Sim, contaremos com 6 pontos estrategicamente distribuídos ao longo dos circuitos de 5 km e 10 km, oferecendo água mineral gelada e suporte médico de prontidão se necessário."
+    }
+  ];
+
+  return (
+    <section id="faq" className="py-16 px-4 bg-slate-900 max-w-4xl mx-auto">
+      <h2 className="text-3xl font-extrabold text-orange-500 text-center mb-8 tracking-tight">
+        Suporte do Atleta
+      </h2>
+      <div className="space-y-4">
+        {perguntasDoBriefing.map((item, index) => (
+          <ItemFaq key={index} pergunta={item.pergunta} resposta={item.resposta} />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+export default Faq;
