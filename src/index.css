@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primaria: #1d4ed8;
-  --color-destaque: #f59e0b;
-  --color-fundo: #f8fafc;
+  --color-primaria: #0b1528;  /* Azul-noite super profundo e premium */
+  --color-destaque: #ff5a1f;  /* Laranja Neon elétrico de alta performance */
+  --color-fundo: #ffffff;
 }
 
 html {
