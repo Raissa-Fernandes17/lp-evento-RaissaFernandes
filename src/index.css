@@ -3,15 +3,32 @@
 
 @theme {
   --color-primaria: #0b1528; /* Azul-noite */
-  --color-destaque: #c2410c; /* Laranja com contraste acessível */
+  --color-destaque: #c2410c; /* Laranja */
   --color-fundo: #ffffff;
 }
 
+/* Rolagem suave */
 html {
   scroll-behavior: smooth;
 }
 
+/* Foco visível para navegação pelo teclado */
 :focus-visible {
   outline: 3px solid var(--color-destaque);
   outline-offset: 3px;
+}
+
+/* Acessibilidade: movimento reduzido */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
