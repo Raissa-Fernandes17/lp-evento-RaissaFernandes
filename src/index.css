@@ -1,11 +1,17 @@
+
 @import "tailwindcss";
 
 @theme {
-  --color-primaria: #0b1528;  /* Azul-noite super profundo e premium */
-  --color-destaque: #ff5a1f;  /* Laranja Neon elétrico de alta performance */
+  --color-primaria: #0b1528; /* Azul-noite */
+  --color-destaque: #c2410c; /* Laranja com contraste acessível */
   --color-fundo: #ffffff;
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-destaque);
+  outline-offset: 3px;
 }
