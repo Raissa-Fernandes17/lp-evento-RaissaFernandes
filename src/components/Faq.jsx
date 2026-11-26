@@ -1,4 +1,3 @@
-
 import { useState } from "react"
 
 // Componente auxiliar para cada item sanfonado
@@ -6,21 +5,30 @@ function ItemFaq({ pergunta, resposta, id }) {
   const [aberto, setAberto] = useState(false)
 
   return (
-    <div className="border border-slate-700 rounded-lg overflow-hidden bg-slate-800 transition-all">
-
+    <div
+      className={`rounded-2xl border overflow-hidden transition-all duration-200 ${
+        aberto
+          ? "border-destaque/70 bg-white/[0.07] shadow-lg shadow-black/25"
+          : "border-white/12 bg-white/[0.04] hover:border-white/25 hover:bg-white/[0.06]"
+      }`}
+    >
       <h3>
         <button
           type="button"
           aria-expanded={aberto}
           aria-controls={`resposta-${id}`}
           onClick={() => setAberto(!aberto)}
-          className="w-full text-left p-4 font-semibold text-white flex justify-between items-center hover:bg-slate-700 transition"
+          className="w-full text-left p-5 sm:p-6 font-bold text-white flex justify-between items-center gap-4 transition-colors cursor-pointer"
         >
-          <span>{pergunta}</span>
+          <span className="text-base sm:text-lg leading-snug">{pergunta}</span>
 
           <span
             aria-hidden="true"
-            className="text-amber-400 text-xl font-bold"
+            className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-lg font-black transition-all duration-200 ${
+              aberto
+                ? "bg-destaque text-white shadow-md shadow-orange-950/40"
+                : "bg-white/10 text-orange-400"
+            }`}
           >
             {aberto ? "−" : "+"}
           </span>
@@ -30,11 +38,10 @@ function ItemFaq({ pergunta, resposta, id }) {
       <div
         id={`resposta-${id}`}
         hidden={!aberto}
-        className="p-4 bg-slate-900 border-t border-slate-700 text-slate-200 text-sm leading-relaxed"
+        className="px-5 pb-5 sm:px-6 sm:pb-6 pt-0 text-slate-200 text-sm sm:text-base leading-relaxed border-t border-white/10 mt-0"
       >
-        {resposta}
+        <p className="pt-4">{resposta}</p>
       </div>
-
     </div>
   )
 }
@@ -58,21 +65,40 @@ function Faq() {
   return (
     <section
       id="faq"
-      className="py-16 px-4 bg-slate-900 max-w-4xl mx-auto"
+      aria-labelledby="titulo-faq"
+      className="relative overflow-hidden py-20 sm:py-24 bg-primaria text-white"
     >
-      <h2 className="text-3xl font-extrabold text-orange-400 text-center mb-8 tracking-tight">
-        Suporte do Atleta
-      </h2>
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -top-32 right-0 h-80 w-80 rounded-full bg-destaque/15 blur-3xl"
+      />
 
-      <div className="space-y-4">
-        {perguntasDoBriefing.map((item, index) => (
-          <ItemFaq
-            key={`faq-${index + 1}`}
-            id={index + 1}
-            pergunta={item.pergunta}
-            resposta={item.resposta}
-          />
-        ))}
+      <div className="section-shell relative z-10 reveal">
+        <div className="section-heading">
+          <span className="section-kicker text-orange-400">
+            Atendimento e Dúvidas
+          </span>
+          <h2
+            id="titulo-faq"
+            className="section-title !text-white"
+          >
+            Suporte ao Atleta
+          </h2>
+          <p className="section-description !text-slate-300">
+            Informações essenciais sobre retirada de kits, hidratação e estrutura oficial da prova.
+          </p>
+        </div>
+
+        <div className="max-w-3xl mx-auto space-y-4">
+          {perguntasDoBriefing.map((item, index) => (
+            <ItemFaq
+              key={`faq-${index + 1}`}
+              id={index + 1}
+              pergunta={item.pergunta}
+              resposta={item.resposta}
+            />
+          ))}
+        </div>
       </div>
     </section>
   )

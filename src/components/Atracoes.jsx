@@ -1,4 +1,3 @@
-
 import { percursos } from '../data/evento'
 import CartaoAtracao from './CartaoAtracao'
 
@@ -7,28 +6,29 @@ function Atracoes() {
     <section
       id="percursos"
       aria-labelledby="titulo-percursos"
-      className="max-w-6xl mx-auto pt-12 pb-4 px-4"
+      className="py-20 sm:py-24 bg-white"
     >
-      <h2
-        id="titulo-percursos"
-        className="text-3xl sm:text-3xl font-black text-primaria text-center uppercase tracking-tight mb-2"
-      >
-        Escolha seu Percurso
-      </h2>
+      <div className="section-shell reveal">
+        <div className="section-heading">
+          <span className="section-kicker">Modalidades</span>
+          <h2 id="titulo-percursos" className="section-title">
+            Escolha seu Percurso
+          </h2>
+          <p className="section-description">
+            Opções para todas as idades e níveis de preparo físico.
+          </p>
+        </div>
 
-      <p className="text-sm sm:text-base text-slate-700 text-center font-medium max-w-sm mx-auto mb-10 leading-relaxed">
-        Opções para todas as idades e níveis de preparo físico.
-      </p>
-
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {percursos.map((item) => (
-          <CartaoAtracao
-            key={item.id}
-            nome={item.nome}
-            nivel={item.nivel}
-            descricao={item.descricao}
-          />
-        ))}
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {percursos.map((item) => (
+            <CartaoAtracao
+              key={item.id}
+              nome={item.nome}
+              nivel={item.nivel}
+              descricao={item.descricao}
+            />
+          ))}
+        </div>
       </div>
     </section>
   )

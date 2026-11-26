@@ -1,15 +1,209 @@
-
 @import "tailwindcss";
 
 @theme {
-  --color-primaria: #0b1528; /* Azul-noite */
+  --color-primaria: #0b1528; /* Azul-marinho escuro */
   --color-destaque: #c2410c; /* Laranja */
   --color-fundo: #ffffff;
 }
 
-/* Rolagem suave */
+:root {
+  --font-display: "Barlow Condensed", "Avenir Next", Avenir, "Segoe UI", sans-serif;
+  --font-sans: "Plus Jakarta Sans", "Avenir Next", Avenir, "Segoe UI", sans-serif;
+  font-family: var(--font-sans);
+  color: var(--color-primaria);
+  background: var(--color-fundo);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-optical-sizing: auto;
+}
+
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+  overflow-x: clip;
+}
+
+body {
+  min-width: 320px;
+  margin: 0;
+  overflow-x: clip;
+  background-color: var(--color-fundo);
+  color: var(--color-primaria);
+}
+
+::selection {
+  color: var(--color-fundo);
+  background: var(--color-destaque);
+}
+
+section[id] {
+  scroll-margin-top: 5.5rem;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.section-shell {
+  width: min(100% - 2rem, 76rem);
+  margin-inline: auto;
+}
+
+.section-heading {
+  max-width: 44rem;
+  margin: 0 auto 3rem;
+  text-align: center;
+}
+
+.section-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--color-destaque);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.section-kicker::before {
+  width: 1.75rem;
+  height: 2px;
+  border-radius: 9999px;
+  background: currentColor;
+  content: "";
+}
+
+.section-title {
+  margin: 0.55rem 0 0;
+  color: var(--color-primaria);
+  font-family: var(--font-display);
+  font-size: clamp(2.15rem, 5vw, 3.5rem);
+  font-weight: 900;
+  line-height: 0.98;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+.section-description {
+  max-width: 40rem;
+  margin: 0.9rem auto 0;
+  color: rgb(11 21 40 / 72%);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+/* Animação leve de entrada durante a rolagem (com fallback seguro) */
+.reveal {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@supports (animation-timeline: view()) {
+  .reveal {
+    animation: rise-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 26%;
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0.15;
+    transform: translateY(1.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.button-primary {
+  display: inline-flex;
+  min-height: 3.5rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  border: 0;
+  border-radius: 0.875rem;
+  background: linear-gradient(135deg, #c2410c 0%, #ea580c 100%);
+  padding: 0.95rem 1.85rem;
+  color: var(--color-fundo);
+  font-size: 0.875rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  box-shadow: 0 14px 32px rgb(194 65 12 / 36%), inset 0 1px 0 rgb(255 255 255 / 22%);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, filter 0.22s ease;
+}
+
+.button-primary:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.06);
+  box-shadow: 0 18px 38px rgb(194 65 12 / 46%), inset 0 1px 0 rgb(255 255 255 / 28%);
+}
+
+.button-primary:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.hero-surface {
+  background-color: var(--color-primaria);
+  background-image:
+    linear-gradient(
+      105deg,
+      rgb(11 21 40 / 97%) 0%,
+      rgb(11 21 40 / 88%) 48%,
+      rgb(11 21 40 / 55%) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgb(11 21 40 / 45%) 0%,
+      transparent 40%,
+      rgb(11 21 40 / 92%) 100%
+    ),
+    url("https://images.unsplash.com/photo-1533561052604-c3beb6d55b8d?auto=format&fit=crop&w=2400&q=85");
+  background-position: center, center, center 45%;
+  background-size: cover;
+}
+
+@media (max-width: 640px) {
+  .section-shell {
+    width: min(100% - 1.5rem, 76rem);
+  }
+
+  .hero-surface {
+    background-image:
+      linear-gradient(
+        180deg,
+        rgb(11 21 40 / 88%) 0%,
+        rgb(11 21 40 / 82%) 55%,
+        rgb(11 21 40 / 95%) 100%
+      ),
+      url("https://images.unsplash.com/photo-1533561052604-c3beb6d55b8d?auto=format&fit=crop&w=1200&q=80");
+    background-position: center, center;
+  }
 }
 
 /* Foco visível para navegação pelo teclado */
