@@ -1,16 +1,69 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# 🏃 Corrida Noturna OC
 
-Currently, two official plugins are available:
+Site oficial de divulgação e inscrição da Corrida Noturna OC.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🌙 Sobre o projeto
 
-## React Compiler
+O projeto tem como objetivo divulgar o evento Corrida Noturna OC, apresentar informações sobre a corrida e permitir que os participantes realizem suas inscrições de maneira simples e intuitiva.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 📸 Prévia do projeto
 
-## Expanding the ESLint configuration
+![Página inicial](src/img/Captura%20de%20tela%202026-11-26%20140815.png)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+![Percursos](src/img/percursos.png)
+
+![Programação](src/img/image.png)
+
+![Formulário de inscrição](src/img/inscricao.png)
+
+## ✨ Funcionalidades
+
+- Apresentação do evento.
+- Informações sobre a corrida.
+- Programação do evento.
+- Percursos de 5 km, 10 km e caminhada.
+- Formulário de inscrição.
+- Suporte ao atleta.
+- Gráfico de inscritos por modalidade.
+- Contagem regressiva para o evento.
+- Botão de lembrete do evento.
+- Layout responsivo para celulares e computadores.
+
+## 🛠️ Tecnologias utilizadas
+
+- React
+- JavaScript
+- HTML
+- Tailwind CSS
+- Vercel
+- Git e GitHub
+
+## 🌐 Deploy
+
+**Site publicado:**
+
+https://lp-evento-raissa-fernandes-sigma.vercel.app
+
+## 📊 Resultados do Lighthouse
+
+Testes realizados no Google Chrome utilizando o Lighthouse, no modo Mobile.
+
+| Categoria | Nota |
+|---|---:|
+| Performance | 79/100 |
+| Acessibilidade | 96/100 |
+| Boas práticas | 100/100 |
+| SEO | 90/100 |
+
+![1- Resultado do Lighthouse](/src/img/1-%20Lighthouse.png), ![2- Resultado do Lighthouse](/src/img/2-%20Lighthouse.png)
+
+## 📱 Responsividade
+
+O site foi desenvolvido para se adaptar a diferentes tamanhos de tela, proporcionando uma boa experiência tanto em computadores quanto em dispositivos móveis.
+
+## 👩‍💻 Desenvolvedora
+
+**Raissa Fernandes**
+
+Projeto desenvolvido como atividade educacional.
