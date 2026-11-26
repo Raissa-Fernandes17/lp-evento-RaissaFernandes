@@ -5,7 +5,7 @@ import Programacao from './components/Programacao'
 import Atracoes from './components/Atracoes'
 import Faq from './components/Faq'
 import Grafico from './components/Grafico'
-import Inscricao from './components/Inscricao'
+import Inscricao from './components/inscricao'
 import Rodape from './components/rodape'
 
 function App() {
